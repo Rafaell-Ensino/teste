@@ -36,13 +36,13 @@ const DATA = {
     { status: 'VENDIDO', type: 'Apartamento 3 Quartos', local: 'Aflitos',    value: 'R$ 420.000',   days: 12 },
   ],
   testimonials: [
-    { init: 'AC', name: 'Ana & Carlos Costa',  role: 'Compradores em Boa Viagem',  quote: 'Encontramos o apartamento dos nossos sonhos em menos de duas semanas. O Rafaell nos guiou com paciência [...]
-    { init: 'FO', name: 'Fernanda Oliveira',   role: 'Vendedora no Recife Antigo', quote: 'Vendi minha cobertura por um valor acima do que eu esperava. A estratégia de divulgação e a condução[...]
-    { init: 'MS', name: 'Marcelo Souza',       role: 'Comprador em Casa Amarela',  quote: 'Um profissional honesto e atencioso do início ao fim. Me ajudou no processo de financiamento com muita c[...]
+    { init: 'AC', name: 'Ana & Carlos Costa',  role: 'Compradores em Boa Viagem',  quote: 'Encontramos o apartamento dos nossos sonhos em menos de duas semanas. O Rafaell nos guiou com paciência [...]' },
+    { init: 'FO', name: 'Fernanda Oliveira',   role: 'Vendedora no Recife Antigo', quote: 'Vendi minha cobertura por um valor acima do que eu esperava. A estratégia de divulgação e a condução[...]' },
+    { init: 'MS', name: 'Marcelo Souza',       role: 'Comprador em Casa Amarela',  quote: 'Um profissional honesto e atencioso do início ao fim. Me ajudou no processo de financiamento com muita c[...]' },
   ],
 };
 
-// ── Estilos ───────────────────────────────────────────────────────────────
+// ── Estilos ───────────────────────────────────────────────────────────
 const fieldStyle = {
   fontFamily: C.sans,
   fontSize: 14,
@@ -520,7 +520,7 @@ export default function Page() {
         textDecoration:'none', boxShadow:'0 4px 16px rgba(37,211,102,0.35)',
       }}>
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.31 2.4l-1.52 1.52a12 12 0 0 0 5.18 5.18l1.52-1.52a2 2 0 0 1 2.4-.31 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
         </svg>
       </a>
 
