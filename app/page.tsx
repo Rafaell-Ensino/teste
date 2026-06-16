@@ -36,9 +36,9 @@ const DATA = {
     { status: 'VENDIDO', type: 'Apartamento 3 Quartos', local: 'Aflitos',    value: 'R$ 420.000',   days: 12 },
   ],
   testimonials: [
-    { init: 'AC', name: 'Ana & Carlos Costa',  role: 'Compradores em Boa Viagem',  quote: 'Encontramos o apartamento dos nossos sonhos em menos de duas semanas. O Rafaell nos guiou com paciência e total transparência em cada etapa.' },
-    { init: 'FO', name: 'Fernanda Oliveira',   role: 'Vendedora no Recife Antigo', quote: 'Vendi minha cobertura por um valor acima do que eu esperava. A estratégia de divulgação e a condução das negociações foram realmente impecáveis.' },
-    { init: 'MS', name: 'Marcelo Souza',       role: 'Comprador em Casa Amarela',  quote: 'Um profissional honesto e atencioso do início ao fim. Me ajudou no processo de financiamento com muita clareza. Recomendo sem hesitar.' },
+    { init: 'AC', name: 'Ana & Carlos Costa',  role: 'Compradores em Boa Viagem',  quote: 'Encontramos o apartamento dos nossos sonhos em menos de duas semanas. O Rafaell nos guiou com paciência [...]
+    { init: 'FO', name: 'Fernanda Oliveira',   role: 'Vendedora no Recife Antigo', quote: 'Vendi minha cobertura por um valor acima do que eu esperava. A estratégia de divulgação e a condução[...]
+    { init: 'MS', name: 'Marcelo Souza',       role: 'Comprador em Casa Amarela',  quote: 'Um profissional honesto e atencioso do início ao fim. Me ajudou no processo de financiamento com muita c[...]
   ],
 };
 
@@ -65,7 +65,7 @@ function H2({ children, light }: { children: React.ReactNode; light?: boolean })
   );
 }
 
-// ── App ──────────────────────────────────────────────────────────────
+// ── App ────────────────────────────────────────────────────────────
 export default function Page() {
   const [scrolled,   setScrolled]   = useState(false);
   const [filter,     setFilter]     = useState('TODOS');
@@ -228,14 +228,14 @@ export default function Page() {
       {/* ===== PARTE COM A FOTO ===== */}
       <div style={{ position: "relative" }}>
         <img
-          src="/foto-perfil.jpg"           // ← Mude para o nome da sua foto
+          src="/fotoPerfil.jpeg"
           alt="Rafaell Mendes - Corretor de Imóveis"
           style={{
             width: "100%",
             height: "100%",
+            aspectRatio: "3/4",
             objectFit: "cover",
-            borderRadius: "4px",
-            boxShadow: "0 10px 30px rgba(0,0,0,0.15)",
+            objectPosition: "center",
           }}
         />
         
@@ -448,7 +448,7 @@ export default function Page() {
         textDecoration:'none', boxShadow:'0 4px 16px rgba(37,211,102,0.35)',
       }}>
         <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.465-1.653-1.764-.173-.299-.09-.579.083-.767.173-.188.385-.49.578-.735.192-.245.256-.42.386-.686.13-.266.065-.498-.033-.697-.098-.199-.862-2.066-1.183-2.826-.311-.735-.624-.735-.862-.747-.223-.01-.479-.01-.735-.01-.256 0-.67.096-.102.596-.432 1.331-.432 3.101 0 4.432.432.9 1.877 2.885 4.547 4.024 2.669 1.14 5.092.968 6.018.823.9-.145 2.764-.574 3.156-1.129.392-.555.392-1.03.274-1.129-.118-.099-.431-.149-.898-.257z"/>
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1[...]
         </svg>
       </a>
 
