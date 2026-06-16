@@ -405,29 +405,88 @@ export default function Page() {
       </section>
 
       {/* ── CONTATO ──────────────────────────────────────────────── */}
-      <section id="contato" style={{ background:C.ink, padding:'90px 48px' }}>
-        <div style={{ maxWidth:880, margin:'0 auto' }}>
-          <div>
-            <Label text="Vamos conversar" />
-            <H2 light>Pronto para o próximo passo?</H2>
-            <p style={{ fontFamily:C.sans, color:'rgba(255,255,255,0.6)', fontSize:15, lineHeight:1.7, margin:'24px 0 40px' }}>
-              Me chame pelo WhatsApp ou preencha o formulário. Respondo em até 2 horas em dias úteis.
-            </p>
-            {[
-              ['WhatsApp',  '(81) 9 98148930'               ],
-              ['Email',     'rafaellmendes.corretor@gmail.com'    ],
-              ['Instagram', '@rafaell_corretor'          ],
-              ['CRECI',     'CRECI-PE 20711'               ],
-            ].map(([k,v]) => (
-              <div key={k} style={{ display:'flex', gap:20, marginBottom:14 }}>
-                <span style={{ fontFamily:C.sans, color:C.gold, fontSize:10, fontWeight:600,
-                  letterSpacing:'0.12em', textTransform:'uppercase', minWidth:72, paddingTop:2 }}>{k}</span>
-                <span style={{ fontFamily:C.sans, color:'rgba(255,255,255,0.75)', fontSize:14 }}>{v}</span>
-              </div>
-            ))}
-          </div>
+<section id="contato" style={{ background: C.ink, padding: "90px 48px" }}>
+  <div style={{ maxWidth: 880, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64 }}>
+    <div>
+      <Label text="Vamos conversar" />
+      <H2 light>Pronto para o próximo passo?</H2>
+      <p style={{ fontFamily: C.sans, color: "rgba(255,255,255,0.6)", fontSize: 15, lineHeight: 1.7, margin: "24px 0 40px" }}>
+        Me chame pelo WhatsApp ou preencha o formulário. Respondo em até 2 horas em dias úteis.
+      </p>
+
+      {[
+        ["WhatsApp", "(81) 9 98148930", "https://wa.me/5581998148930"],
+        ["Email", "rafaellmendes.corretor@gmail.com", "mailto:rafaellmendes.corretor@gmail.com"],
+        ["Instagram", "@rafaell_corretor", "https://www.instagram.com/rafaell_corretor/"],
+        ["CRECI", "CRECI-PE 20711", null],
+      ].map(([k, v, link]) => (
+        <div key={k} style={{ display: "flex", gap: 20, marginBottom: 14 }}>
+          <span style={{ 
+            fontFamily: C.sans, 
+            color: C.gold, 
+            fontSize: 10, 
+            fontWeight: 600,
+            letterSpacing: "0.12em", 
+            textTransform: "uppercase", 
+            minWidth: 72, 
+            paddingTop: 2 
+          }}>
+            {k}
+          </span>
+          
+          {link ? (
+            <a 
+              href={link} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              style={{ 
+                fontFamily: C.sans, 
+                color: "rgba(255,255,255,0.75)", 
+                fontSize: 14,
+                textDecoration: "none"
+              }}
+              onMouseOver={(e) => e.currentTarget.style.color = C.gold}
+              onMouseOut={(e) => e.currentTarget.style.color = "rgba(255,255,255,0.75)"}
+            >
+              {v}
+            </a>
+          ) : (
+            <span style={{ fontFamily: C.sans, color: "rgba(255,255,255,0.75)", fontSize: 14 }}>
+              {v}
+            </span>
+          )}
         </div>
-      </section>
+      ))}
+    </div>
+
+    {/* Formulário permanece igual */}
+    <div>
+      {sent ? (
+        <div style={{ height: "100%", display: "flex", flexDirection: "column", alignItems: "center",
+          justifyContent: "center", textAlign: "center", background: "rgba(255,255,255,0.04)", padding: 40 }}>
+          <div style={{ fontFamily: C.serif, color: C.gold, fontSize: 48, marginBottom: 16 }}>✓</div>
+          <div style={{ fontFamily: C.serif, color: C.white, fontSize: 22, marginBottom: 8 }}>Mensagem enviada!</div>
+          <div style={{ fontFamily: C.sans, color: "rgba(255,255,255,0.5)", fontSize: 13 }}>Entrarei em contato em breve.</div>
+        </div>
+      ) : (
+        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+          <input type="text" placeholder="Nome completo" value={form.name}
+            onChange={e => setForm({ ...form, name: e.target.value })} style={fieldStyle} />
+          <input type="tel" placeholder="WhatsApp" value={form.phone}
+            onChange={e => setForm({ ...form, phone: e.target.value })} style={fieldStyle} />
+          <textarea placeholder="O que você está procurando?" rows={5} value={form.message}
+            onChange={e => setForm({ ...form, message: e.target.value })}
+            style={{ ...fieldStyle, resize: "vertical" }} />
+          <button onClick={handleSubmit} style={{
+            background: C.gold, color: C.ink, fontFamily: C.sans, fontWeight: 700,
+            fontSize: 12, letterSpacing: "0.1em", textTransform: "uppercase",
+            padding: 15, border: "none", cursor: "pointer", marginTop: 4,
+          }}>Enviar Mensagem</button>
+        </div>
+      )}
+    </div>
+  </div>
+</section>
 
       {/* ── FOOTER ───────────────────────────────────────────────── */}
       <footer style={{ background:C.inkDark, padding:'20px 48px',
