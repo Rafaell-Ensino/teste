@@ -36,9 +36,9 @@ const DATA = {
     { status: 'VENDIDO', type: 'Apartamento 3 Quartos', local: 'Aflitos',    value: 'R$ 420.000',   days: 12 },
   ],
   testimonials: [
-    { init: 'AC', name: 'Ana & Carlos Costa',  role: 'Compradores em Boa Viagem',  quote: 'Encontramos o apartamento dos nossos sonhos em menos de duas semanas. O Rafaell nos guiou com paciência [...]
-    { init: 'FO', name: 'Fernanda Oliveira',   role: 'Vendedora no Recife Antigo', quote: 'Vendi minha cobertura por um valor acima do que eu esperava. A estratégia de divulgação e a condução[...]
-    { init: 'MS', name: 'Marcelo Souza',       role: 'Comprador em Casa Amarela',  quote: 'Um profissional honesto e atencioso do início ao fim. Me ajudou no processo de financiamento com muita c[...]
+    { init: 'AC', name: 'Ana & Carlos Costa',  role: 'Compradores em Boa Viagem',  quote: 'Encontramos o apartamento dos nossos sonhos em menos de duas semanas. O Rafaell nos guiou com paciência e expertise.' },
+    { init: 'FO', name: 'Fernanda Oliveira',   role: 'Vendedora no Recife Antigo', quote: 'Vendi minha cobertura por um valor acima do que eu esperava. A estratégia de divulgação e a condução foram impecáveis.' },
+    { init: 'MS', name: 'Marcelo Souza',       role: 'Comprador em Casa Amarela',  quote: 'Um profissional honesto e atencioso do início ao fim. Me ajudou no processo de financiamento com muita clareza.' },
   ],
 };
 
@@ -448,7 +448,7 @@ export default function Page() {
         textDecoration:'none', boxShadow:'0 4px 16px rgba(37,211,102,0.35)',
       }}>
         <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1[...]
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.764-1.653-2.061-.173-.297-.018-.458.13-.606.149-.149.331-.388.497-.582.165-.194.22-.331.33-.552.11-.221.055-.413-.027-.582-.082-.169-.745-1.794-.933-2.464-.245-.665-.494-.575-.67-.585-.173-.01-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462.847 2.875 1.048 3.074.201.198 2.738 4.16 6.646 5.82 2.676 1.156 3.73 1.247 5.076 1.039.92-.136 2.821-1.156 3.215-2.273.394-1.117.394-2.076.275-2.271-.12-.205-.432-.328-.9-.576z" />
         </svg>
       </a>
 
