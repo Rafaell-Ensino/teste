@@ -448,12 +448,12 @@ export default function Page() {
       <Label text="Vamos conversar" />
       <H2 light>Pronto para o próximo passo?</H2>
       <p style={{ fontFamily: C.sans, color: "rgba(255,255,255,0.6)", fontSize: 15, lineHeight: 1.7, margin: "24px 0 40px" }}>
-        Me chame pelo WhatsApp ou preencha o formulário. Respondo em até 2 horas em dias úteis.
+        Me chame pelo WhatsApp para um contato, formulario destinado exclusivamente para solicitações legais vinculadas ao site.
       </p>
 
       {[
         ["WhatsApp", "(81) 9 98148930", "https://wa.me/5581998148930"],
-        ["Email", "rafaellmendes.corretor@gmail.com", "mailto:rafaellmendes.corretor@gmail.com"],
+        ["Email", "rafaellmendes.corretor@gmail.com"],
         ["Instagram", "@rafaell_corretor", "https://www.instagram.com/rafaell_corretor/"],
         ["CRECI", "CRECI-PE 20711", null],
       ].map(([k, v, link]) => (
