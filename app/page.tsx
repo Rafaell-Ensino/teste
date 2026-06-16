@@ -36,13 +36,13 @@ const DATA = {
     { status: 'VENDIDO', type: 'Apartamento 3 Quartos', local: 'Aflitos',    value: 'R$ 420.000',   days: 12 },
   ],
   testimonials: [
-    { init: 'AC', name: 'Ana & Carlos Costa',  role: 'Compradores em Boa Viagem',  quote: 'Encontramos o apartamento dos nossos sonhos em menos de duas semanas. O Rafaell nos guiou com paciência [...]
-    { init: 'FO', name: 'Fernanda Oliveira',   role: 'Vendedora no Recife Antigo', quote: 'Vendi minha cobertura por um valor acima do que eu esperava. A estratégia de divulgação e a condução[...]
-    { init: 'MS', name: 'Marcelo Souza',       role: 'Comprador em Casa Amarela',  quote: 'Um profissional honesto e atencioso do início ao fim. Me ajudou no processo de financiamento com muita c[...]
+    { init: 'AC', name: 'Ana & Carlos Costa',  role: 'Compradores em Boa Viagem',  quote: 'Encontramos o apartamento dos nossos sonhos em menos de duas semanas. O Rafaell nos guiou com paciência [...]' },
+    { init: 'FO', name: 'Fernanda Oliveira',   role: 'Vendedora no Recife Antigo', quote: 'Vendi minha cobertura por um valor acima do que eu esperava. A estratégia de divulgação e a condução[...]' },
+    { init: 'MS', name: 'Marcelo Souza',       role: 'Comprador em Casa Amarela',  quote: 'Um profissional honesto e atencioso do início ao fim. Me ajudou no processo de financiamento com muita c[...]' },
   ],
 };
 
-// ── Estilos ───────────────────────────────────────────────────────────
+// ── Estilos ────────────────────────────────────────────────────────────────
 const fieldStyle = {
   fontFamily: C.sans,
   fontSize: 14,
@@ -81,6 +81,31 @@ export default function Page() {
   const [scrolled,   setScrolled]   = useState(false);
   const [filter,     setFilter]     = useState('TODOS');
   const [activeTest, setActiveTest] = useState(0);
+  
+  // ESTES TRÊS são obrigatórios para o formulário funcionar:
+  const [form, setForm] = useState({ name: "", phone: "", message: "" });
+  const [sent, setSent] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    if (e && e.preventDefault) e.preventDefault();
+    
+    try {
+      const res = await fetch("https://formspree.io/f/SEU_ID_AQUI", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (res.ok) {
+        setSent(true);
+        setForm({ name: "", phone: "", message: "" }); // limpa o formulário
+      } else {
+        alert("Erro ao enviar mensagem. Tente novamente.");
+      }
+    } catch (err) {
+      alert("Erro ao enviar mensagem.");
+    }
+  };
 
   useEffect(() => {
     // Google Fonts
@@ -418,17 +443,17 @@ export default function Page() {
 
       {/* ── CONTATO ──────────────────────────────────────────────── */}
 <section id="contato" style={{ background: C.ink, padding: "90px 48px" }}>
-  <div style={{ maxWidth: 880, margin: "0 auto" }}>
+  <div style={{ maxWidth: 880, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64 }}>
     <div>
       <Label text="Vamos conversar" />
       <H2 light>Pronto para o próximo passo?</H2>
       <p style={{ fontFamily: C.sans, color: "rgba(255,255,255,0.6)", fontSize: 15, lineHeight: 1.7, margin: "24px 0 40px" }}>
-        Me chame pelo WhatsApp ou Instagram. Respondo em até 2 horas em dias úteis.
+        Me chame pelo WhatsApp ou preencha o formulário. Respondo em até 2 horas em dias úteis.
       </p>
 
       {[
         ["WhatsApp", "(81) 9 98148930", "https://wa.me/5581998148930"],
-        ["Email", "rafaellmendes.corretor@gmail.com", null],
+        ["Email", "rafaellmendes.corretor@gmail.com", "mailto:rafaellmendes.corretor@gmail.com"],
         ["Instagram", "@rafaell_corretor", "https://www.instagram.com/rafaell_corretor/"],
         ["CRECI", "CRECI-PE 20711", null],
       ].map(([k, v, link]) => (
@@ -470,6 +495,33 @@ export default function Page() {
         </div>
       ))}
     </div>
+
+    {/* Formulário */}
+    <div>
+      {sent ? (
+        <div style={{ height: "100%", display: "flex", flexDirection: "column", alignItems: "center",
+          justifyContent: "center", textAlign: "center", background: "rgba(255,255,255,0.04)", padding: 40 }}>
+          <div style={{ fontFamily: C.serif, color: C.gold, fontSize: 48, marginBottom: 16 }}>✓</div>
+          <div style={{ fontFamily: C.serif, color: C.white, fontSize: 22, marginBottom: 8 }}>Mensagem enviada!</div>
+          <div style={{ fontFamily: C.sans, color: "rgba(255,255,255,0.5)", fontSize: 13 }}>Entrarei em contato em breve.</div>
+        </div>
+      ) : (
+        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+          <input type="text" placeholder="Nome completo" value={form.name}
+            onChange={e => setForm({ ...form, name: e.target.value })} style={fieldStyle as React.CSSProperties} />
+          <input type="tel" placeholder="WhatsApp" value={form.phone}
+            onChange={e => setForm({ ...form, phone: e.target.value })} style={fieldStyle as React.CSSProperties} />
+          <textarea placeholder="O que você está procurando?" rows={5} value={form.message}
+            onChange={e => setForm({ ...form, message: e.target.value })}
+            style={{ ...fieldStyle, resize: "vertical" } as React.CSSProperties} />
+          <button onClick={handleSubmit} style={{
+            background: C.gold, color: C.ink, fontFamily: C.sans, fontWeight: 700,
+            fontSize: 12, letterSpacing: "0.1em", textTransform: "uppercase",
+            padding: 15, border: "none", cursor: "pointer", marginTop: 4,
+          }}>Enviar Mensagem</button>
+        </div>
+      )}
+    </div>
   </div>
 </section>
 
@@ -492,7 +544,7 @@ export default function Page() {
         textDecoration:'none', boxShadow:'0 4px 16px rgba(37,211,102,0.35)',
       }}>
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
         </svg>
       </a>
 
