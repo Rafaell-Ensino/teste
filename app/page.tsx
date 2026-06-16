@@ -42,6 +42,40 @@ const DATA = {
   ],
 };
 
+
+export default function Page() {
+  const [scrolled, setScrolled] = useState(false);
+  const [filter, setFilter] = useState("TODOS");
+  const [activeTest, setActiveTest] = useState(0);
+  
+  // ←←← ESTES TRÊS são obrigatórios para o formulário funcionar:
+  const [form, setForm] = useState({ name: "", phone: "", message: "" });
+  const [sent, setSent] = useState(false);
+
+  // ... resto do seu código
+
+    const handleSubmit = async (e: React.FormEvent) => {
+    if (e && e.preventDefault) e.preventDefault();
+    
+    try {
+      const res = await fetch("https://formspree.io/f/SEU_ID_AQUI", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (res.ok) {
+        setSent(true);
+        setForm({ name: "", phone: "", message: "" }); // limpa o formulário
+      } else {
+        alert("Erro ao enviar mensagem. Tente novamente.");
+      }
+    } catch (err) {
+      alert("Erro ao enviar mensagem.");
+    }
+  };
+
+  
 // ── Sub-componentes ────────────────────────────────────────────────────────
 function Label({ text }: { text: string }) {
   return (
