@@ -76,36 +76,7 @@ function H2({ children, light }: { children: React.ReactNode; light?: boolean })
   );
 }
 
-// ── App ────────────────────────────────────────────────────────────
-export default function Page() {
-  const [scrolled,   setScrolled]   = useState(false);
-  const [filter,     setFilter]     = useState('TODOS');
-  const [activeTest, setActiveTest] = useState(0);
-  
-  // ESTES TRÊS são obrigatórios para o formulário funcionar:
-  const [form, setForm] = useState({ name: "", phone: "", message: "" });
-  const [sent, setSent] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    if (e && e.preventDefault) e.preventDefault();
-    
-    try {
-      const res = await fetch("https://formspree.io/f/SEU_ID_AQUI", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-
-      if (res.ok) {
-        setSent(true);
-        setForm({ name: "", phone: "", message: "" }); // limpa o formulário
-      } else {
-        alert("Erro ao enviar mensagem. Tente novamente.");
-      }
-    } catch (err) {
-      alert("Erro ao enviar mensagem.");
-    }
-  };
 
   useEffect(() => {
     // Google Fonts
@@ -445,11 +416,7 @@ export default function Page() {
 <section id="contato" style={{ background: C.ink, padding: "90px 48px" }}>
   <div style={{ maxWidth: 880, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64 }}>
     <div>
-      <Label text="Vamos conversar" />
-      <H2 light>Pronto para o próximo passo?</H2>
-      <p style={{ fontFamily: C.sans, color: "rgba(255,255,255,0.6)", fontSize: 15, lineHeight: 1.7, margin: "24px 0 40px" }}>
-        Me chame pelo WhatsApp ou preencha o formulário. Respondo em até 2 horas em dias úteis.
-      </p>
+      
 
       {[
         ["WhatsApp", "(81) 9 98148930", "https://wa.me/5581998148930"],
