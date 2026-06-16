@@ -453,7 +453,7 @@ export default function Page() {
 
       {[
         ["WhatsApp", "(81) 9 98148930", "https://wa.me/5581998148930"],
-        ["Email", "rafaellmendes.corretor@gmail.com", "mailto:rafaellmendes.corretor@gmail.com"],
+        ["Email", "rafaellmendes.corretor@gmail.com"],
         ["Instagram", "@rafaell_corretor", "https://www.instagram.com/rafaell_corretor/"],
         ["CRECI", "CRECI-PE 20711", null],
       ].map(([k, v, link]) => (
@@ -496,35 +496,7 @@ export default function Page() {
       ))}
     </div>
 
-    {/* Formulário */}
-    <div>
-      {sent ? (
-        <div style={{ height: "100%", display: "flex", flexDirection: "column", alignItems: "center",
-          justifyContent: "center", textAlign: "center", background: "rgba(255,255,255,0.04)", padding: 40 }}>
-          <div style={{ fontFamily: C.serif, color: C.gold, fontSize: 48, marginBottom: 16 }}>✓</div>
-          <div style={{ fontFamily: C.serif, color: C.white, fontSize: 22, marginBottom: 8 }}>Mensagem enviada!</div>
-          <div style={{ fontFamily: C.sans, color: "rgba(255,255,255,0.5)", fontSize: 13 }}>Entrarei em contato em breve.</div>
-        </div>
-      ) : (
-        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-          <input type="text" placeholder="Nome completo" value={form.name}
-            onChange={e => setForm({ ...form, name: e.target.value })} style={fieldStyle as React.CSSProperties} />
-          <input type="tel" placeholder="WhatsApp" value={form.phone}
-            onChange={e => setForm({ ...form, phone: e.target.value })} style={fieldStyle as React.CSSProperties} />
-          <textarea placeholder="O que você está procurando?" rows={5} value={form.message}
-            onChange={e => setForm({ ...form, message: e.target.value })}
-            style={{ ...fieldStyle, resize: "vertical" } as React.CSSProperties} />
-          <button onClick={handleSubmit} style={{
-            background: C.gold, color: C.ink, fontFamily: C.sans, fontWeight: 700,
-            fontSize: 12, letterSpacing: "0.1em", textTransform: "uppercase",
-            padding: 15, border: "none", cursor: "pointer", marginTop: 4,
-          }}>Enviar Mensagem</button>
-        </div>
-      )}
-    </div>
-  </div>
-</section>
-
+    
       {/* ── FOOTER ───────────────────────────────────────────────── */}
       <footer style={{ background:C.inkDark, padding:'20px 48px',
         display:'flex', justifyContent:'space-between', alignItems:'center' }}>
