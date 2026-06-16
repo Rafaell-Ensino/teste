@@ -36,13 +36,13 @@ const DATA = {
     { status: 'VENDIDO', type: 'Apartamento 3 Quartos', local: 'Aflitos',    value: 'R$ 420.000',   days: 12 },
   ],
   testimonials: [
-    { init: 'AC', name: 'Ana & Carlos Costa',  role: 'Compradores em Boa Viagem',  quote: 'Encontramos o apartamento dos nossos sonhos em menos de duas semanas. O Rafaell nos guiou com paciência [...]' },
-    { init: 'FO', name: 'Fernanda Oliveira',   role: 'Vendedora no Recife Antigo', quote: 'Vendi minha cobertura por um valor acima do que eu esperava. A estratégia de divulgação e a condução[...]' },
-    { init: 'MS', name: 'Marcelo Souza',       role: 'Comprador em Casa Amarela',  quote: 'Um profissional honesto e atencioso do início ao fim. Me ajudou no processo de financiamento com muita c[...]' },
+    { init: 'AC', name: 'Ana & Carlos Costa',  role: 'Compradores em Boa Viagem',  quote: 'Encontramos o apartamento dos nossos sonhos em menos de duas semanas. O Rafaell nos guiou com paciência [...]
+    { init: 'FO', name: 'Fernanda Oliveira',   role: 'Vendedora no Recife Antigo', quote: 'Vendi minha cobertura por um valor acima do que eu esperava. A estratégia de divulgação e a condução[...]
+    { init: 'MS', name: 'Marcelo Souza',       role: 'Comprador em Casa Amarela',  quote: 'Um profissional honesto e atencioso do início ao fim. Me ajudou no processo de financiamento com muita c[...]
   ],
 };
 
-// ── Estilos ────────────────────────────────────────────────────────────────
+// ── Estilos ───────────────────────────────────────────────────────────────
 const fieldStyle = {
   fontFamily: C.sans,
   fontSize: 14,
@@ -453,7 +453,7 @@ export default function Page() {
 
       {[
         ["WhatsApp", "(81) 9 98148930", "https://wa.me/5581998148930"],
-        ["Email", "rafaellmendes.corretor@gmail.com", "mailto:rafaellmendes.corretor@gmail.com"],
+        ["Email", "rafaellmendes.corretor@gmail.com", null],
         ["Instagram", "@rafaell_corretor", "https://www.instagram.com/rafaell_corretor/"],
         ["CRECI", "CRECI-PE 20711", null],
       ].map(([k, v, link]) => (
@@ -496,32 +496,8 @@ export default function Page() {
       ))}
     </div>
 
-    {/* Formulário */}
-    <div>
-      {sent ? (
-        <div style={{ height: "100%", display: "flex", flexDirection: "column", alignItems: "center",
-          justifyContent: "center", textAlign: "center", background: "rgba(255,255,255,0.04)", padding: 40 }}>
-          <div style={{ fontFamily: C.serif, color: C.gold, fontSize: 48, marginBottom: 16 }}>✓</div>
-          <div style={{ fontFamily: C.serif, color: C.white, fontSize: 22, marginBottom: 8 }}>Mensagem enviada!</div>
-          <div style={{ fontFamily: C.sans, color: "rgba(255,255,255,0.5)", fontSize: 13 }}>Entrarei em contato em breve.</div>
-        </div>
-      ) : (
-        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-          <input type="text" placeholder="Nome completo" value={form.name}
-            onChange={e => setForm({ ...form, name: e.target.value })} style={fieldStyle as React.CSSProperties} />
-          <input type="tel" placeholder="WhatsApp" value={form.phone}
-            onChange={e => setForm({ ...form, phone: e.target.value })} style={fieldStyle as React.CSSProperties} />
-          <textarea placeholder="O que você está procurando?" rows={5} value={form.message}
-            onChange={e => setForm({ ...form, message: e.target.value })}
-            style={{ ...fieldStyle, resize: "vertical" } as React.CSSProperties} />
-          <button onClick={handleSubmit} style={{
-            background: C.gold, color: C.ink, fontFamily: C.sans, fontWeight: 700,
-            fontSize: 12, letterSpacing: "0.1em", textTransform: "uppercase",
-            padding: 15, border: "none", cursor: "pointer", marginTop: 4,
-          }}>Enviar Mensagem</button>
-        </div>
-      )}
-    </div>
+    {/* Espaço vazio onde o formulário estava */}
+    <div />
   </div>
 </section>
 
@@ -544,7 +520,7 @@ export default function Page() {
         textDecoration:'none', boxShadow:'0 4px 16px rgba(37,211,102,0.35)',
       }}>
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.31 2.4l-1.52 1.52a12 12 0 0 0 5.18 5.18l1.52-1.52a2 2 0 0 1 2.4-.31 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
         </svg>
       </a>
 
