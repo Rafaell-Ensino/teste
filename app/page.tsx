@@ -1,36 +1,5 @@
 'use client';
 import { useState, useEffect } from 'react';
-export default function Page() {
-  const [scrolled, setScrolled] = useState(false);
-  const [filter, setFilter] = useState("TODOS");
-  const [activeTest, setActiveTest] = useState(0);
-  
-  // ←←← ESTES TRÊS são obrigatórios para o formulário funcionar:
-  const [form, setForm] = useState({ name: "", phone: "", message: "" });
-  const [sent, setSent] = useState(false);
-
-  // ... resto do seu código
-
-    const handleSubmit = async (e: React.FormEvent) => {
-    if (e && e.preventDefault) e.preventDefault();
-    
-    try {
-      const res = await fetch("https://formspree.io/f/SEU_ID_AQUI", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-
-      if (res.ok) {
-        setSent(true);
-        setForm({ name: "", phone: "", message: "" }); // limpa o formulário
-      } else {
-        alert("Erro ao enviar mensagem. Tente novamente.");
-      }
-    } catch (err) {
-      alert("Erro ao enviar mensagem.");
-    }
-  };
 
 // ── Design Tokens ─────────────────────────────────────────────────────────
 const C = {
@@ -67,14 +36,22 @@ const DATA = {
     { status: 'VENDIDO', type: 'Apartamento 3 Quartos', local: 'Aflitos',    value: 'R$ 420.000',   days: 12 },
   ],
   testimonials: [
-    { init: 'AC', name: 'Ana & Carlos Costa',  role: 'Compradores em Boa Viagem',  quote: 'Encontramos o apartamento dos nossos sonhos em menos de duas semanas. O Rafaell nos guiou com paciência e expertise.' },
-    { init: 'FO', name: 'Fernanda Oliveira',   role: 'Vendedora no Recife Antigo', quote: 'Vendi minha cobertura por um valor acima do que eu esperava. A estratégia de divulgação e a condução foram impecáveis.' },
-    { init: 'MS', name: 'Marcelo Souza',       role: 'Comprador em Casa Amarela',  quote: 'Um profissional honesto e atencioso do início ao fim. Me ajudou no processo de financiamento com muita clareza.' },
+    { init: 'AC', name: 'Ana & Carlos Costa',  role: 'Compradores em Boa Viagem',  quote: 'Encontramos o apartamento dos nossos sonhos em menos de duas semanas. O Rafaell nos guiou com paciência [...]' },
+    { init: 'FO', name: 'Fernanda Oliveira',   role: 'Vendedora no Recife Antigo', quote: 'Vendi minha cobertura por um valor acima do que eu esperava. A estratégia de divulgação e a condução[...]' },
+    { init: 'MS', name: 'Marcelo Souza',       role: 'Comprador em Casa Amarela',  quote: 'Um profissional honesto e atencioso do início ao fim. Me ajudou no processo de financiamento com muita c[...]' },
   ],
 };
 
-
-
+// ── Estilos ────────────────────────────────────────────────────────────────
+const fieldStyle = {
+  fontFamily: C.sans,
+  fontSize: 14,
+  padding: '12px 16px',
+  border: `1px solid rgba(255,255,255,0.2)`,
+  background: 'rgba(255,255,255,0.05)',
+  color: '#FFFFFF',
+  fontWeight: 500,
+};
 
 // ── Sub-componentes ────────────────────────────────────────────────────────
 function Label({ text }: { text: string }) {
@@ -104,6 +81,31 @@ export default function Page() {
   const [scrolled,   setScrolled]   = useState(false);
   const [filter,     setFilter]     = useState('TODOS');
   const [activeTest, setActiveTest] = useState(0);
+  
+  // ESTES TRÊS são obrigatórios para o formulário funcionar:
+  const [form, setForm] = useState({ name: "", phone: "", message: "" });
+  const [sent, setSent] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    if (e && e.preventDefault) e.preventDefault();
+    
+    try {
+      const res = await fetch("https://formspree.io/f/SEU_ID_AQUI", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (res.ok) {
+        setSent(true);
+        setForm({ name: "", phone: "", message: "" }); // limpa o formulário
+      } else {
+        alert("Erro ao enviar mensagem. Tente novamente.");
+      }
+    } catch (err) {
+      alert("Erro ao enviar mensagem.");
+    }
+  };
 
   useEffect(() => {
     // Google Fonts
@@ -288,6 +290,7 @@ export default function Page() {
     </div>
   </div>
 </section>
+
       {/* ── ESTATÍSTICAS ─────────────────────────────────────────── */}
       <section style={{ background:C.ink, padding:'90px 48px', overflow:'hidden', position:'relative' }}>
         <div style={{ maxWidth:880, margin:'0 auto', position:'relative', zIndex:1 }}>
@@ -493,7 +496,7 @@ export default function Page() {
       ))}
     </div>
 
-    {/* Formulário permanece igual */}
+    {/* Formulário */}
     <div>
       {sent ? (
         <div style={{ height: "100%", display: "flex", flexDirection: "column", alignItems: "center",
@@ -505,12 +508,12 @@ export default function Page() {
       ) : (
         <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
           <input type="text" placeholder="Nome completo" value={form.name}
-            onChange={e => setForm({ ...form, name: e.target.value })} style={fieldStyle} />
+            onChange={e => setForm({ ...form, name: e.target.value })} style={fieldStyle as React.CSSProperties} />
           <input type="tel" placeholder="WhatsApp" value={form.phone}
-            onChange={e => setForm({ ...form, phone: e.target.value })} style={fieldStyle} />
+            onChange={e => setForm({ ...form, phone: e.target.value })} style={fieldStyle as React.CSSProperties} />
           <textarea placeholder="O que você está procurando?" rows={5} value={form.message}
             onChange={e => setForm({ ...form, message: e.target.value })}
-            style={{ ...fieldStyle, resize: "vertical" }} />
+            style={{ ...fieldStyle, resize: "vertical" } as React.CSSProperties} />
           <button onClick={handleSubmit} style={{
             background: C.gold, color: C.ink, fontFamily: C.sans, fontWeight: 700,
             fontSize: 12, letterSpacing: "0.1em", textTransform: "uppercase",
@@ -541,7 +544,7 @@ export default function Page() {
         textDecoration:'none', boxShadow:'0 4px 16px rgba(37,211,102,0.35)',
       }}>
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
         </svg>
       </a>
 
