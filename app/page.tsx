@@ -320,7 +320,7 @@ export default function Page() {
           <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-end', marginBottom:48 }}>
             <div>
               <Label text="Portfólio" />
-              <H2>Resultados reais,<br />clientes reais</H2>
+              <H2>Resultados de clientes</H2>
             </div>
             <div style={{ display:'flex', gap:2 }}>
               {['TODOS','VENDIDO','LOCADO'].map(f => (
